@@ -189,9 +189,11 @@ cell_size = Vector2( 32, 32 )
 format = 1
 tile_data = PoolIntArray( 327693, 3, 0, 393220, 0, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 7, 0, 393229, 3, 0, 458756, 3, 0, 458765, 3, 0, 524292, 3, 0, 524301, 3, 0, 589828, 5, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 6, 0, 655373, 3, 0 )
 
-[node name="shop" parent="." instance=ExtResource( 3 )]
-position = Vector2( 257, 139 )
+[node name="YSort" type="YSort" parent="."]
 
-[node name="player" parent="." instance=ExtResource( 7 )]
-position = Vector2( 257, 139 )
-[connection signal="playerEntered" from="shop" to="." method="_on_shop_playerEntered"]
+[node name="player" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 160, 146.5 )
+
+[node name="shop" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 257, 138.5 )
+[connection signal="playerEntered" from="YSort/shop" to="." method="_on_shop_playerEntered"]

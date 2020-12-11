@@ -7,6 +7,13 @@ var right=false
 var up=false
 var down=false
 
+func enableCamera():
+	$Camera2D.current=true
+
+func disableCamera():
+	$Camera2D.current=false
+	
+
 func _ready():
 	add_to_group("Player")
 
