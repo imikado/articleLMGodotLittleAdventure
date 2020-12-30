@@ -7,6 +7,8 @@ var right=false
 var up=false
 var down=false
 
+var useTouch=false
+
 func enableCamera():
 	$Camera2D.current=true
 
@@ -47,12 +49,16 @@ func _process(delta):
 func pocessInput():
 	if Input.is_action_pressed("ui_right"):
 		right=true
+		useTouch=false
 	if Input.is_action_pressed("ui_left"):
 		left=true
+		useTouch=false
 	if Input.is_action_pressed("ui_down"):
 		down=true
+		useTouch=false
 	if Input.is_action_pressed("ui_up"):
 		up=true
+		useTouch=false
 
 
 func processAnimation():
@@ -81,7 +87,33 @@ func playAnimation(anim):
 
 
 func resetKeys():
+	if useTouch:
+		return
+		
 	left=false
 	right=false
 	up=false
 	down=false
+
+
+func _on_navigation_movePlayer(joystickVector_):
+	useTouch=true
+	
+	right=false
+	left=false
+	down=false
+	up=false	
+	
+	if abs(joystickVector_.x)>abs(joystickVector_.y) :
+	
+		if(joystickVector_.x > 10):
+			right=true
+		elif(joystickVector_.x < -10):
+			left=true
+	 
+	else:
+				
+		if(joystickVector_.y > 10):
+			down=true
+		elif(joystickVector_.y < -10):
+			up=true

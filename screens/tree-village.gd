@@ -1,18 +1,14 @@
 extends Node2D
 
+func getPlayer():
+	return $YSort/player
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-
+	if(GlobalPlayer.shouldLoadPosition()):
+		getPlayer().position=GlobalPlayer.loadPosition()
 
 func _on_shop_playerEntered():
+	var PositionToSave=getPlayer().position
+	PositionToSave.y+=10
+	GlobalPlayer.savePosition(PositionToSave)
 	get_tree().change_scene("res://screens/tree-village/shop.tscn")
