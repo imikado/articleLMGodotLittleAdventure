@@ -3,8 +3,6 @@ extends Resource
 class_name item_class 
 
 enum TYPE {WEAPON, MAGICPOTION }
-enum ATTACK_FIELD { NAME,ANIMATION,DAMAGE, XPMIN }
-enum POTION_FIELD { ACTION,HEALTH }
 
 var name
 var description
