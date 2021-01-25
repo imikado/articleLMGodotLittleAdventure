@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+signal startClimbing
+signal endClimbing
+
 var speed=100
 
 var left=false
@@ -8,6 +11,10 @@ var up=false
 var down=false
 
 var useTouch=false
+
+var startClimbing=false
+var onScale=false
+var isClimbing=false
 
 func enableCamera():
 	$Camera2D.current=true
@@ -63,8 +70,10 @@ func pocessInput():
 
 func processAnimation():
 	var currentAnimation='walk-right'
-
-	if up :
+	
+	if startClimbing:
+		currentAnimation='climbing'
+	elif up :
 		currentAnimation='walk-up'
 		$AnimatedSprite.flip_h=true
 	elif down :
@@ -117,3 +126,19 @@ func _on_navigation_movePlayer(joystickVector_):
 			down=true
 		elif(joystickVector_.y < -10):
 			up=true
+
+
+func _on_gordonhome_playerStartClimbing():
+	startClimbing=true
+	emit_signal("startClimbing")
+
+func _on_gordonhome_playerOnScale():
+	onScale=true
+
+func _on_gordonhome_playerLeaveScale():
+	onScale=false
+
+func _on_gordonhome_playerEndClimbing():
+	if !onScale:
+		startClimbing=false
+		emit_signal("endClimbing")
