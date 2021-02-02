@@ -41,16 +41,18 @@ func show():
 		exampleItem.queue_free()
 	
 		for shopItem in shopItemList:
+			var realItem=GlobalItems.getItem(shopItem.item)
 			var newItem=patternItem.duplicate()
-			newItem.setImage(shopItem.item.getTexture())
+			newItem.setImage(realItem.getTexture())
 			newItem.connect("button_down",self,"_on_pressed_selected",[shopItem])
 		
 			getGrid().add_child(newItem)
 
 func _on_pressed_selected(shopItem_):
+	var realItem=GlobalItems.getItem(shopItem_.item)
 	getSideInfo().visible=true
-	getSideInfo().get_node("title").text=shopItem_.item.name
-	getSideInfo().get_node("description").text=shopItem_.item.description
+	getSideInfo().get_node("title").text=realItem.name
+	getSideInfo().get_node("description").text=realItem.description
 	getSideInfo().get_node("HBoxContainer/price").text=str(shopItem_.price)
 
 	var buyButton=getBuyButton()

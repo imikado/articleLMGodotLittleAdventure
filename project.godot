@@ -39,12 +39,18 @@ _global_script_class_icons={
 [application]
 
 config/name="LittleAdventure"
-run/main_scene="res://screens/tree-village.tscn"
+run/main_scene="res://screens/boot.tscn"
+boot_splash/image="res://screens/boot/logodupot.png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+boot_splash/bg_color=Color( 0.933333, 0.372549, 0, 1 )
 config/icon="res://icon.png"
 
 [autoload]
 
 GlobalPlayer="*res://common/singletons/globalPlayer.gd"
+GlobalGame="*res://common/singletons/globalGame.gd"
+GlobalItems="*res://common/singletons/globalItems.gd"
 
 [display]
 
@@ -53,6 +59,10 @@ window/size/height=180
 window/size/test_width=960
 window/size/test_height=760
 window/stretch/mode="2d"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "gut" )
 
 [importer_defaults]
 

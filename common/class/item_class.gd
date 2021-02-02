@@ -4,6 +4,8 @@ class_name item_class
 
 enum TYPE {WEAPON, MAGICPOTION }
 
+var simpleFieldToSaveList=["name","description","image","type"]
+
 var name
 var description
 var image
@@ -25,3 +27,4 @@ func getTexture():
 	textureTmp.create_from_image(imageTmp,0)
 	
 	return textureTmp
+
