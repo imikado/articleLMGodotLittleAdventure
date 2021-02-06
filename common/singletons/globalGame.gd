@@ -35,7 +35,16 @@ func getNewFilename(nickname_):
 		if(saveFile.substr(0,nickname_.length())==nickname_):
 			newId+=1
 	return filePattern+str(newId)+".save"
+
+func getFilteredSaveList(fileList_):
+	var filterSaveList=[]
+	for file in fileList_:
+		var extension=file.right( file.length()-5 )
+		if extension=='.save':
+			filterSaveList.append(file)
+	return filterSaveList	
 	
+
 func getList():
 	var path="user://"
 	var fileList=[]
@@ -52,8 +61,7 @@ func getList():
 	else:
 		push_error("Erreur lors de l'access au repertoire user://")
 	
-	print(fileList)
-	return fileList
+	return getFilteredSaveList(fileList)
 
 func convertObjectToSave(object_,fieldList_):
 	var saveData={}

@@ -30,3 +30,10 @@ func _on_simpleDialog_discussionFinished():
 func _on_discussionArea_playerOpenedDoor():
 	$simpleDialog.start()
 	pass # Replace with function body.
+
+func getPlayer():
+	return $player
+
+func _on_HUD_save():
+	GlobalGame.saveWithPosition(filename,getPlayer().position);
+	pass # Replace with function body.

@@ -25,3 +25,8 @@ func _on_player_startClimbing():
 func _on_player_endClimbing():
 	$YSort.sort_enabled=true
 	print ("end climbing")
+
+
+func _on_HUD_save():
+	GlobalGame.saveWithPosition(filename,getPlayer().position);
+	pass # Replace with function body.
