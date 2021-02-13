@@ -2,7 +2,7 @@ extends Resource
 
 class_name item_class 
 
-enum TYPE {WEAPON, MAGICPOTION }
+enum TYPE {WEAPON, MAGICPOTION,MAP,TOOL }
 
 var simpleFieldToSaveList=["name","description","image","type"]
 

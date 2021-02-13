@@ -34,9 +34,10 @@ margin_bottom = 38.0
 text = "Inventaire"
 
 [node name="attackList" type="VBoxContainer" parent="."]
-margin_top = -0.471939
-margin_right = 40.0
-margin_bottom = 39.5281
+margin_left = 59.464
+margin_top = 63.7114
+margin_right = 99.464
+margin_bottom = 103.711
 theme = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

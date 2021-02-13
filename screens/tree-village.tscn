@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://screens/tree-village/images/background.png" type="Texture" id=1]
 [ext_resource path="res://screens/tree-village.gd" type="Script" id=2]
@@ -6,11 +6,10 @@
 [ext_resource path="res://screens/tree-village/images/mushrooms.png" type="Texture" id=4]
 [ext_resource path="res://screens/tree-village/images/bushes.png" type="Texture" id=5]
 [ext_resource path="res://screens/tree-village/images/paths.png" type="Texture" id=6]
-[ext_resource path="res://common/characters/player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://common/gamePad/navigation.tscn" type="PackedScene" id=8]
+[ext_resource path="res://common/ui/playerAndControl.tscn" type="PackedScene" id=7]
 [ext_resource path="res://screens/tree-village/assets/tree-house.tscn" type="PackedScene" id=9]
 [ext_resource path="res://screens/tree-village/images/tree.png" type="Texture" id=10]
-[ext_resource path="res://common/ui/HUD.tscn" type="PackedScene" id=11]
+[ext_resource path="res://common/areas/door.tscn" type="PackedScene" id=12]
 
 [sub_resource type="TileSet" id=1]
 0/name = "background.png 0"
@@ -28,7 +27,16 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="TileSet" id=2]
+[sub_resource type="ConvexPolygonShape2D" id=2]
+points = PoolVector2Array( 4.697, 21.6551, 6.15055, 16.8099, 13.2568, 13.4183, 26.5002, 15.6794, 24.2392, 25.3697, 6.47356, 25.0467 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( 4.05098, 10.0267, 9.21915, 4.21249, 21.4936, 3.08195, 26.9848, 7.6041, 27.6308, 15.6794, 22.4626, 19.5555, 20.363, 20.04, 20.5245, 27.7923, 11.3187, 27.4693, 11.4802, 19.8785, 6.15055, 17.1329 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+points = PoolVector2Array( 45.5837, 226.522, 47.4443, 136.227, 19.7687, 124.134, 7.67517, 106.458, 7.4426, 81.748, 7.90773, 60.3517, 27.4434, 30.8156, 54.1888, 18.4895, 96.5161, 17.5592, 124.424, 31.5133, 144.425, 62.7356, 146.286, 102.795, 124.424, 129.076, 102.098, 134.657, 102.563, 241.348, 48.6071, 239.952 )
+
+[sub_resource type="TileSet" id=5]
 0/name = "bushes.png 0"
 0/texture = ExtResource( 5 )
 0/tex_offset = Vector2( 0, 0 )
@@ -39,9 +47,16 @@
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
 0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 2 )
 0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 2 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 0/z_index = 0
 1/name = "mushrooms.png 1"
 1/texture = ExtResource( 4 )
@@ -53,9 +68,16 @@
 1/navigation_offset = Vector2( 0, 0 )
 1/shape_offset = Vector2( 0, 0 )
 1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape = SubResource( 3 )
 1/shape_one_way = false
-1/shape_one_way_margin = 0.0
-1/shapes = [  ]
+1/shape_one_way_margin = 1.0
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 3 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 1/z_index = 0
 2/name = "tree.png 2"
 2/texture = ExtResource( 10 )
@@ -67,12 +89,19 @@
 2/navigation_offset = Vector2( 0, 0 )
 2/shape_offset = Vector2( 0, 0 )
 2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape = SubResource( 4 )
 2/shape_one_way = false
-2/shape_one_way_margin = 0.0
-2/shapes = [  ]
+2/shape_one_way_margin = 1.0
+2/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 4 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 2/z_index = 0
 
-[sub_resource type="TileSet" id=3]
+[sub_resource type="TileSet" id=6]
 0/name = "paths.png 0"
 0/texture = ExtResource( 6 )
 0/tex_offset = Vector2( 0, 0 )
@@ -186,7 +215,13 @@
 7/shapes = [  ]
 7/z_index = 0
 
-[sub_resource type="TileSet" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=7]
+points = PoolVector2Array( 42.7929, 203.673, 104.191, 137.74, 103.261, 239.953, 46.9792, 238.325 )
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+points = PoolVector2Array( 42.3278, 202.393, 46.0489, 133.437, 18.6059, 121.227, 6.51233, 99.831, 9.53571, 62.3294, 22.5595, 35.0027, 59.0727, 17.7927, 92.5625, 18.4904, 126.052, 31.2816, 142.565, 59.8875, 145.355, 107.041, 131.401, 125.53, 105.354, 136.693, 105.586, 215.882, 102.098, 238.093, 81.8643, 243.209, 45.3512, 241.116 )
+
+[sub_resource type="TileSet" id=9]
 0/name = "tree.png 0"
 0/texture = ExtResource( 10 )
 0/tex_offset = Vector2( 0, 0 )
@@ -197,9 +232,22 @@
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
 0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 7 )
 0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 7 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 8 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 0/z_index = 0
 
 [node name="tree-village" type="Node2D"]
@@ -212,22 +260,31 @@ format = 1
 tile_data = PoolIntArray( -65539, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131069, 0, 0, -131068, 0, 0, -131067, 0, 0, -131066, 0, 0, -131065, 0, 0, -131064, 0, 0, -131063, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65528, 0, 0, -65527, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 196605, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 458749, 0, 0, 458750, 0, 0, 458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 524285, 0, 0, 524286, 0, 0, 524287, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0 )
 
 [node name="decors" type="TileMap" parent="."]
-tile_set = SubResource( 2 )
+tile_set = SubResource( 5 )
 cell_size = Vector2( 32, 32 )
 cell_y_sort = true
 format = 1
-tile_data = PoolIntArray( -458751, 2, 0, -458747, 2, 0, -458734, 2, 0, -458728, 2, 0, -393206, 2, 0, -262145, 2, 0, -327665, 2, 0, -327659, 2, 0, -196613, 2, 0, -262140, 2, 0, -131063, 0, 0, 65532, 2, 0, 8, 0, 0, 65538, 1, 0, 65551, 1, 0, 65560, 1, 0, 65563, 0, 0, 131074, 0, 0, 131076, 0, 0, 131080, 0, 0, 131098, 0, 0, 262138, 2, 0, 196612, 1, 0, 196618, 0, 0, 196625, 0, 0, 196630, 1, 0, 196633, 1, 0, 262144, 0, 0, 327680, 0, 0, 327683, 1, 0, 327704, 0, 0, 327708, 0, 0, 393228, 0, 0, 393231, 0, 0, 393234, 0, 0, 393238, 1, 0, 458752, 0, 0, 458753, 1, 0, 458761, 0, 0, 458764, 0, 0, 458773, 0, 0, 458775, 0, 0, 458778, 0, 0, 524288, 0, 0, 524291, 1, 0, 524295, 1, 0, 524299, 1, 0, 524307, 1, 0, 655358, 0, 0, 589847, 0, 0, 589848, 1, 0, 655360, 0, 0, 655363, 0, 0, 655366, 0, 0, 655371, 0, 0, 655374, 0, 0, 655376, 0, 0, 655377, 1, 0, 655379, 0, 0, 655386, 0, 0, 720904, 0, 0, 720906, 1, 0, 720917, 0, 0, 720918, 1, 0, 786433, 0, 0, 786438, 1, 0, 786444, 0, 0, 786447, 1, 0, 786451, 1, 0, 786456, 0, 0 )
+tile_data = PoolIntArray( -720876, 2, 0, -720873, 2, 0, -655344, 2, 0, -524296, 2, 0, -589817, 2, 0, -589812, 2, 0, -524260, 2, 0, -393220, 2, 0, -458751, 2, 0, -458747, 2, 0, -458734, 2, 0, -458728, 2, 0, -393206, 2, 0, -262152, 2, 0, -262145, 2, 0, -327665, 2, 0, -327659, 2, 0, -327654, 2, 0, -327652, 2, 0, -196613, 2, 0, -262140, 2, 0, -131063, 0, 0, -8, 2, 0, 65532, 2, 0, 8, 0, 0, 65538, 1, 0, 65551, 1, 0, 65560, 1, 0, 131074, 0, 0, 131076, 0, 0, 131080, 0, 0, 131098, 0, 0, 262136, 2, 0, 262138, 2, 0, 196612, 1, 0, 196618, 0, 0, 196625, 0, 0, 196630, 1, 0, 196633, 1, 0, 196636, 0, 0, 262144, 0, 0, 327680, 0, 0, 327683, 1, 0, 327704, 0, 0, 327708, 0, 0, 393228, 0, 0, 393231, 0, 0, 393234, 0, 0, 393238, 1, 0, 393245, 1, 0, 524280, 2, 0, 524283, 2, 0, 458752, 0, 0, 458753, 1, 0, 458761, 0, 0, 458764, 0, 0, 458773, 0, 0, 458775, 0, 0, 458778, 0, 0, 524288, 0, 0, 524291, 1, 0, 524295, 1, 0, 524299, 1, 0, 524307, 1, 0, 655358, 0, 0, 589847, 0, 0, 589848, 1, 0, 589852, 0, 0, 655360, 0, 0, 655363, 0, 0, 655366, 0, 0, 655371, 0, 0, 655376, 0, 0, 655377, 1, 0, 655379, 0, 0, 655386, 0, 0, 655389, 1, 0, 720904, 0, 0, 720906, 1, 0, 720917, 0, 0, 720918, 1, 0, 786433, 0, 0, 786438, 1, 0, 786444, 0, 0, 786447, 1, 0, 786451, 1, 0, 786456, 0, 0 )
 
 [node name="road" type="TileMap" parent="."]
-tile_set = SubResource( 3 )
+tile_set = SubResource( 6 )
 cell_size = Vector2( 32, 32 )
 format = 1
 tile_data = PoolIntArray( 131092, 3, 0, 196628, 3, 0, 262164, 3, 0, 327693, 3, 0, 327700, 3, 0, 393220, 0, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 7, 0, 393229, 3, 0, 393236, 3, 0, 458756, 3, 0, 458765, 3, 0, 458772, 3, 0, 524292, 3, 0, 524301, 3, 0, 524308, 4, 0, 524309, 1, 0, 524310, 1, 0, 524311, 1, 0, 524312, 1, 0, 524313, 1, 0, 524314, 1, 0, 524315, 1, 0, 524316, 1, 0, 524317, 1, 0, 589828, 5, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 6, 0, 589844, 3, 0, 655373, 3, 0, 655380, 3, 0, 720909, 5, 0, 720910, 1, 0, 720911, 1, 0, 720912, 1, 0, 720913, 1, 0, 720914, 1, 0, 720915, 1, 0, 720916, 7, 0 )
 
+[node name="cameraRef" type="ReferenceRect" parent="."]
+margin_left = -40.0
+margin_top = -10.0
+margin_right = 960.0
+margin_bottom = 475.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="YSort" type="YSort" parent="."]
 
 [node name="shop" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 257, 138.5 )
+position = Vector2( 257.707, 138.5 )
 
 [node name="gordon-home" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( 433.238, 142.525 )
@@ -235,25 +292,26 @@ position = Vector2( 433.238, 142.525 )
 [node name="gem-house" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 655.238, 50.525 )
 
-[node name="player" parent="YSort" instance=ExtResource( 7 )]
-position = Vector2( 160, 146.5 )
+[node name="playerAndControl" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 195.088, 258.996 )
 
-[node name="navigation" parent="." instance=ExtResource( 8 )]
-
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource( 4 )
+[node name="tree bottom" type="TileMap" parent="."]
+tile_set = SubResource( 9 )
 cell_y_sort = true
 format = 1
-tile_data = PoolIntArray( 262157, 0, 0, 393214, 0, 0, 327681, 0, 0, 327684, 0, 0, 327687, 0, 0, 327691, 0, 0, 458751, 0, 0, 393219, 0, 0, 393222, 0, 0, 393225, 0, 0, 393229, 0, 0 )
+tile_data = PoolIntArray( 393212, 0, 0, 393214, 0, 0, 327681, 0, 0, 327684, 0, 0, 327691, 0, 0, 458751, 0, 0, 393219, 0, 0, 393222, 0, 0, 393224, 0, 0, 393226, 0, 0, 393229, 0, 0, 524283, 0, 0, 524285, 0, 0, 458753, 0, 0, 458757, 0, 0, 458763, 0, 0, 589823, 0, 0, 524291, 0, 0, 524295, 0, 0, 524297, 0, 0, 524301, 0, 0, 589835, 0, 0 )
 
-[node name="HUD" parent="." instance=ExtResource( 11 )]
+[node name="goOutFromTreeVillage" parent="." instance=ExtResource( 12 )]
+position = Vector2( 947.329, 248.635 )
+scale = Vector2( 1.92, 16.7473 )
 [connection signal="playerEntered" from="YSort/shop" to="." method="_on_shop_playerEntered"]
-[connection signal="playerEndClimbing" from="YSort/gordon-home" to="YSort/player" method="_on_gordonhome_playerEndClimbing"]
 [connection signal="playerEntered" from="YSort/gordon-home" to="." method="_on_gordonhome_playerEntered"]
-[connection signal="playerLeaveScale" from="YSort/gordon-home" to="YSort/player" method="_on_gordonhome_playerLeaveScale"]
-[connection signal="playerOnScale" from="YSort/gordon-home" to="YSort/player" method="_on_gordonhome_playerOnScale"]
-[connection signal="playerStartClimbing" from="YSort/gordon-home" to="YSort/player" method="_on_gordonhome_playerStartClimbing"]
-[connection signal="endClimbing" from="YSort/player" to="." method="_on_player_endClimbing"]
-[connection signal="startClimbing" from="YSort/player" to="." method="_on_player_startClimbing"]
-[connection signal="movePlayer" from="navigation" to="YSort/player" method="_on_navigation_movePlayer"]
-[connection signal="save" from="HUD" to="." method="_on_HUD_save"]
+[connection signal="playerLeaveScale" from="YSort/gordon-home" to="YSort/playerAndControl" method="_on_gordonhome_playerLeaveScale"]
+[connection signal="playerOnScale" from="YSort/gordon-home" to="YSort/playerAndControl" method="_on_gordonhome_playerOnScale"]
+[connection signal="playerStartClimbing" from="YSort/gordon-home" to="YSort/playerAndControl" method="_on_gordonhome_playerStartClimbing"]
+[connection signal="playerEntered" from="YSort/gem-house" to="." method="_on_gemhouse_playerEntered"]
+[connection signal="endClimbing" from="YSort/playerAndControl" to="." method="_on_playerAndControl_endClimbing"]
+[connection signal="quit" from="YSort/playerAndControl" to="." method="_on_playerAndControl_quit"]
+[connection signal="save" from="YSort/playerAndControl" to="." method="_on_playerAndControl_save"]
+[connection signal="startClimbing" from="YSort/playerAndControl" to="." method="_on_playerAndControl_startClimbing"]
+[connection signal="playerOpenedDoor" from="goOutFromTreeVillage" to="." method="_on_goOutFromTreeVillage_playerOpenedDoor"]

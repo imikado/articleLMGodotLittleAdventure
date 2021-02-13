@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://common/ui/HUD/life.png" type="Texture" id=1]
 [ext_resource path="res://common/ui/HUD.gd" type="Script" id=2]
 [ext_resource path="res://common/themes/default.theme" type="Theme" id=3]
 [ext_resource path="res://common/ui/HUD/gem.png" type="Texture" id=4]
+[ext_resource path="res://common/ui/inventoryList.tscn" type="PackedScene" id=5]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -17,8 +18,8 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control"]
-margin_right = 76.0
-margin_bottom = 10.0
+margin_right = 147.0
+margin_bottom = 12.0
 rect_scale = Vector2( 2.16124, 1.08631 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -49,20 +50,48 @@ texture = ExtResource( 4 )
 [node name="gem" type="Label" parent="Control/HBoxContainer"]
 margin_left = 50.0
 margin_top = 2.0
-margin_right = 59.0
+margin_right = 101.0
 margin_bottom = 9.0
+size_flags_horizontal = 3
 text = "1"
 
 [node name="btnMenu" type="Button" parent="Control/HBoxContainer"]
-margin_left = 63.0
-margin_right = 105.0
+margin_left = 105.0
+margin_right = 147.0
 margin_bottom = 12.0
 text = "Menu"
 
-[node name="PopupMenu" type="PopupMenu" parent="Control/HBoxContainer"]
-margin_left = 48.0
-margin_right = 156.0
-margin_bottom = 40.0
-items = [ "Sauvegarder", null, 0, false, false, 0, 0, null, "", false, "Quitter", null, 0, false, false, 1, 0, null, "", false ]
+[node name="inventoryList" parent="." instance=ExtResource( 5 )]
+
+[node name="btnBlock" type="VBoxContainer" parent="."]
+visible = false
+margin_left = 64.1474
+margin_top = 70.8715
+margin_right = 176.147
+margin_bottom = 138.871
+rect_scale = Vector2( 1.65837, 1.65837 )
+theme = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="btnSave" type="Button" parent="btnBlock"]
+margin_right = 112.0
+margin_bottom = 10.0
+text = "Sauvegarder"
+
+[node name="btnQuit" type="Button" parent="btnBlock"]
+margin_top = 14.0
+margin_right = 112.0
+margin_bottom = 24.0
+text = "Quitter"
+
+[node name="btnInventory" type="Button" parent="btnBlock"]
+margin_top = 28.0
+margin_right = 112.0
+margin_bottom = 38.0
+text = "Inventaire"
 [connection signal="button_down" from="Control/HBoxContainer/btnMenu" to="." method="_on_Button_button_down"]
-[connection signal="id_pressed" from="Control/HBoxContainer/PopupMenu" to="." method="_on_PopupMenu_id_pressed"]
+[connection signal="button_down" from="btnBlock/btnSave" to="." method="_on_btnSave_button_down"]
+[connection signal="button_down" from="btnBlock/btnQuit" to="." method="_on_btnQuit_button_down"]
+[connection signal="button_down" from="btnBlock/btnInventory" to="." method="_on_btnInventory_button_down"]

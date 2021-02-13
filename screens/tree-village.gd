@@ -1,32 +1,41 @@
-extends Node2D
+extends "res://common/class/scene.gd"
 
-func getPlayer():
-	return $YSort/player
 
 func _ready():
-	if(GlobalPlayer.shouldLoadPosition()):
-		getPlayer().position=GlobalPlayer.loadPosition()
+	setPlayerPath("YSort/playerAndControl")
+	loadPosition()
+	getPlayer().loadCameraLimits($cameraRef)
+
 
 func _on_shop_playerEntered():
-	var PositionToSave=getPlayer().position
-	PositionToSave.y+=10
-	GlobalPlayer.savePosition(PositionToSave)
+	GlobalPlayer.savePosition(Vector2(48,73))
 	get_tree().change_scene("res://screens/tree-village/shop.tscn")
 
 
 func _on_gordonhome_playerEntered():
+	GlobalPlayer.savePosition(Vector2(55,84))
 	get_tree().change_scene("res://screens/tree-village/gordon-home.tscn")
 
-
-func _on_player_startClimbing():
-	print("start climbing")
-	$YSort.sort_enabled=false
-
-func _on_player_endClimbing():
-	$YSort.sort_enabled=true
-	print ("end climbing")
-
-
-func _on_HUD_save():
-	GlobalGame.saveWithPosition(filename,getPlayer().position);
+func _on_gemhouse_playerEntered():
+	GlobalPlayer.savePosition(Vector2(48,73))
+	get_tree().change_scene("res://screens/tree-village/gem-house.tscn")
 	pass # Replace with function body.
+
+
+func _on_goOutFromTreeVillage_playerOpenedDoor():
+	GlobalPlayer.savePosition(Vector2(293,608))
+	get_tree().change_scene("res://screens/macro-map.tscn")
+	pass # Replace with function body.
+
+
+
+
+func _on_playerAndControl_endClimbing():
+	$YSort.sort_enabled=true
+	pass # Replace with function body.
+
+
+func _on_playerAndControl_startClimbing():
+	$YSort.sort_enabled=false
+	pass # Replace with function body.
+ 

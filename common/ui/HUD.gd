@@ -3,14 +3,25 @@ extends CanvasLayer
 signal save
 signal quit
 
-const ITEM_SAVE=0
-const ITEM_QUIT=1
+const MENU_SAVE=0
+const MENU_INVENTORY=1
+const MENU_QUIT=2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	setLife(GlobalPlayer.getLife())
 	setGems(GlobalPlayer.getGemsBalance())
+	
+	$btnBlock.visible=false
+	
+	$inventoryList.setItemList(GlobalPlayer.getItemsList())
 	pass # Replace with function body.
+
+func reloadGems():
+	setGems(GlobalPlayer.getGemsBalance())
+	
+func reloadInventory():
+	$inventoryList.setItemList(GlobalPlayer.getItemsList())
 
 func setLife(life_):
 	$Control/HBoxContainer/life.text=str(life_)
@@ -24,14 +35,21 @@ func setGems(gems_):
 
 
 func _on_Button_button_down():
-	$Control/HBoxContainer/PopupMenu.popup()
+	$btnBlock.visible=true
 	pass # Replace with function body.
 
 
-func _on_PopupMenu_id_pressed(id):
-	var actionSelected=$Control/HBoxContainer/PopupMenu.get_current_index()
-	if actionSelected==ITEM_SAVE:
-		emit_signal("save")
-	elif actionSelected==ITEM_QUIT:
-		emit_signal("quit")
-		
+func _on_btnSave_button_down():
+	emit_signal("save")	
+	$btnBlock.visible=false
+	pass # Replace with function body.
+
+
+func _on_btnQuit_button_down():
+	emit_signal("quit")
+	pass # Replace with function body.
+
+
+func _on_btnInventory_button_down():
+	$btnBlock.visible=false
+	$inventoryList.show()

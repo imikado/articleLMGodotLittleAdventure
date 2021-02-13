@@ -2,7 +2,7 @@ extends Resource
 
 class_name shopItem_class 
 
-var item : item_class
+var item
 var price
 
 func _init(item_,price_):

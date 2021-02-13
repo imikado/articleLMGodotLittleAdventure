@@ -58,3 +58,4 @@ margin_bottom = 13.6862
 [connection signal="damageFinished" from="spider1" to="." method="_on_spider1_damageFinished"]
 [connection signal="dieFinished" from="spider1" to="." method="_on_spider1_dieFinished"]
 [connection signal="attack" from="gamepad" to="." method="_on_gamepad_attack"]
+[connection signal="leave" from="gamepad" to="." method="_on_gamepad_leave"]

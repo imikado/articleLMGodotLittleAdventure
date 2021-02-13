@@ -66,7 +66,7 @@ func getList():
 func convertObjectToSave(object_,fieldList_):
 	var saveData={}
 	for field in fieldList_:
-		saveData[field]=get(field)
+		saveData[field]=object_.get(field)
 	return saveData
 	
 func getDataToSave(scene_):
@@ -97,6 +97,8 @@ func loadFile(file_):
 		
 	saveFile.close()
 
+func gotoMenu():
+	get_tree().change_scene("res://screens/menu.tscn")
 
 
 	

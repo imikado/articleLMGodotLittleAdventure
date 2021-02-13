@@ -16,16 +16,50 @@ var startClimbing=false
 var onScale=false
 var isClimbing=false
 
+var limitLeft=0
+var limitRight=0
+var limitTop=0
+var limitBottom=0
+
+export var refRect : Rect2
+
 func enableCamera():
 	$Camera2D.current=true
 
 func disableCamera():
 	$Camera2D.current=false
+
+func loadCameraLimits(refRect:ReferenceRect):
+	
+	var position=refRect.rect_global_position
+	var rect=refRect.rect_size + position
+	
+	limitLeft=position.x
+	limitTop=position.y
+	limitRight=rect.x
+	limitBottom=rect.y
+	
+	$Camera2D.limit_left=limitLeft
+	$Camera2D.limit_top=limitTop
+	$Camera2D.limit_right=limitRight
+	$Camera2D.limit_bottom=limitBottom
 	
 
+func resetZoom():
+	$Camera2D.zoom=Vector2(1,1)
+
+func zoomDown():
+	var zoom=0.7
+	$Camera2D.zoom=Vector2(zoom,zoom)
+	
+func zoomUp():
+	var zoom=2
+	$Camera2D.zoom=Vector2(zoom,zoom)
+	
 func _ready():
 	add_to_group("Player")
-
+	#loadCameraLimits()
+	resetZoom()
 
 func _process(delta):
 	
@@ -41,12 +75,17 @@ func _process(delta):
 		velocity.y -= 1	
 	elif down:
 		velocity.y += 1
+	
+	var velocityMin=velocity	
 		
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-		
-		
-	move_and_slide(velocity)
+	
+	var expectPosition=global_position+velocityMin
+	
+
+	if expectPosition.x < limitRight && expectPosition.x > limitLeft && expectPosition.y > limitTop && expectPosition.y < limitBottom: 	
+		move_and_slide(velocity)
 	
 	processAnimation()
 	

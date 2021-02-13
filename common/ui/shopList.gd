@@ -41,12 +41,15 @@ func show():
 		exampleItem.queue_free()
 	
 		for shopItem in shopItemList:
-			var realItem=GlobalItems.getItem(shopItem.item)
-			var newItem=patternItem.duplicate()
-			newItem.setImage(realItem.getTexture())
-			newItem.connect("button_down",self,"_on_pressed_selected",[shopItem])
-		
-			getGrid().add_child(newItem)
+			if shopItem.item!=null:
+				var realItem=GlobalItems.getItem(shopItem.item)
+				var newItem=patternItem.duplicate()
+				newItem.setImage(realItem.getTexture())
+				newItem.connect("button_down",self,"_on_pressed_selected",[shopItem])
+			
+				getGrid().add_child(newItem)
+			else:
+				print(shopItem)
 
 func _on_pressed_selected(shopItem_):
 	var realItem=GlobalItems.getItem(shopItem_.item)
@@ -58,7 +61,7 @@ func _on_pressed_selected(shopItem_):
 	var buyButton=getBuyButton()
 	buyButton.connect("button_down",self,"_on_pressed_buy",[shopItem_])
 
-	if GlobalPlayer.canSpendGems(shopItem_.price):
+	if GlobalPlayer.canSpendGems(shopItem_.price) && false==GlobalPlayer.hasItem(shopItem_.item):
 		buyButton.disabled=false
 	else:
 		buyButton.disabled=true
@@ -67,6 +70,7 @@ func _on_pressed_buy(shopItem_):
 	GlobalPlayer.spendGems(shopItem_.price)
 	GlobalPlayer.addItem(shopItem_.item)
 	emit_signal("buyItem",shopItem_.item)
+	getWindow().visible=false
 
 
 func _on_closeButton_pressed():

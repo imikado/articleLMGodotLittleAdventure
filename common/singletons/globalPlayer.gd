@@ -1,21 +1,36 @@
 extends Node
 
-var simpleFieldToSaveList=["gems","xp","life","maxLife","nickname","itemsList"]
+var simpleFieldToSaveList=["gems","xp","life","maxLife","nickname","itemsList","equipment"]
 
 var position=null
 var itemsList=[]
 
-var gems=0
+var gems=10
 var xp=0
 var life=100
 var maxLife=100
 var nickname=null
+var equipment=null
 
+#---nickname
 func setNickname(nickname_):
 	nickname=nickname_
 
 func getNickname():
 	return nickname
+
+#---equipment
+func setEquipment(item_):
+	equipment=item_
+	
+func getEquipment():
+	return equipment
+	
+func hasEquipment():
+	if equipment==null:
+		return false
+	else:
+		return true
 
 #--life
 func setLife(life_):
@@ -62,12 +77,15 @@ func shouldLoadPosition():
 		return false
 
 #--gems
+func addGems(value_):
+	putGems(value_)
+	
 func putGems(value_):
 	gems+=value_
 	
 func spendGems(value_):
-	if(value_<gems):
-		gems+=value_
+	if(value_<=gems):
+		gems-=value_
 		
 func getGemsBalance():
 	return gems
@@ -76,7 +94,15 @@ func canSpendGems(price_):
 	if(price_<=gems):
 		return true
 	return false
+
+#--items
+func hasItem(itemId_):
+	return itemsList.has(itemId_)
 	
+func addItemIfNotExist(itemId_):
+	if !hasItem(itemId_):
+		addItem(itemId_)
+		
 func addItem(itemId_):
 	itemsList.append(itemId_)
 	
@@ -96,7 +122,8 @@ func getAttackList():
 	
 func loadFromSave(data_):
 	for field in simpleFieldToSaveList:
-		set(field,data_[field])
+		if data_.has(field):
+			set(field,data_[field])
 	position=Vector2(data_.position[0],data_.position[1])
 	pass
 

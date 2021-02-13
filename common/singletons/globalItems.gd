@@ -5,8 +5,15 @@ var attackClass=preload("res://common/class/item/attack_class.gd")
 var potionClass=preload("res://common/class/item/potion_class.gd")
 
 enum ID {
-	WOOD_SWORD, 
+	#weapons
+	WOOD_SWORD,
+	#potions 
 	HEALTH_POTION_10
+	#maps
+	GORMON_STAR_MAP
+	#tools
+	SPADE
+	
 	}
 
 var itemList={
@@ -45,11 +52,23 @@ var itemList={
 		[	
 			potionClass.new("increaseLife",10)
 		]
+	),
+	ID.SPADE:itemClass.new(
+		"Pelle",
+		"Une pelle pour creuser",
+		"common/items/tools/spade.png",
+		itemClass.TYPE.TOOL
+	),
+	ID.GORMON_STAR_MAP:itemClass.new(
+		"Carte",
+		"Carte au tresor des etoiles de Gormon",
+		"common/items/maps/gormon-star-map.png",
+		itemClass.TYPE.MAP
 	)
 }
 
 func getItem(key_):
-	return itemList[key_]
+	return itemList[int(key_)]
 	
 	
 

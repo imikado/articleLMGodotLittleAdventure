@@ -41,8 +41,7 @@ func test():
 func _ready():
 	$lifePlayer.init(GlobalPlayer.getLife(),GlobalPlayer.getMaxLife())
 	$lifeSpider.init(lifeSpider,lifeSpider)
-	
-	test()
+ 
 
 func _on_gamepad_attack(attack_):
 	$player.playAttack(attack_.animation)
@@ -77,3 +76,13 @@ func _on_spider1_dieFinished():
 
 func _on_player_dieFinished():	
 	get_tree().change_scene("res://screens/game-over.tscn")
+
+
+func _on_gamepad_leave():
+	if(GlobalPlayer.getPosition().y<300):
+		GlobalPlayer.savePosition(GlobalPlayer.getPosition()+Vector2(0,-50) )
+	else:
+		GlobalPlayer.savePosition(GlobalPlayer.getPosition()+Vector2(0,+50) )
+		
+	get_tree().change_scene("res://screens/macro-map.tscn")
+	pass # Replace with function body.
