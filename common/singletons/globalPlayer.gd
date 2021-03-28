@@ -1,11 +1,14 @@
 extends Node
 
-var simpleFieldToSaveList=["gems","xp","life","maxLife","nickname","itemsList","equipment"]
+var simpleFieldToSaveList=["gems","xp","life","maxLife","nickname","equipment","itemsList"]
+var stringFieldList=["nickname"]
+var arrayFieldList=["itemsList"]
+var nullFieldList=["equipment"]
 
 var position=null
 var itemsList=[]
 
-var gems=10
+var gems=0
 var xp=0
 var life=100
 var maxLife=100
@@ -108,7 +111,14 @@ func addItem(itemId_):
 	
 func getItemsList():
 	return itemsList
-	
+
+func countItem(itemId_):
+	return itemsList.count(itemId_)
+
+func removeItem(itemId_):
+	itemsList.erase(itemId_)
+
+
 func getAttackList():
 	var attackFilteredList=[]
 	for itemId in getItemsList():
@@ -123,7 +133,21 @@ func getAttackList():
 func loadFromSave(data_):
 	for field in simpleFieldToSaveList:
 		if data_.has(field):
-			set(field,data_[field])
+			var valueMixed=data_[field]
+			if arrayFieldList.has(field):
+				var intArray=[]
+				for valueMixedLoop in valueMixed:
+					intArray.append(int(valueMixedLoop))
+					
+				set(field,intArray)
+			
+			elif stringFieldList.has(field):
+				set(field,str(valueMixed))
+			elif nullFieldList.has(field):
+				set(field,valueMixed)
+			else:
+				set(field,int(valueMixed))
+			
 	position=Vector2(data_.position[0],data_.position[1])
 	pass
 

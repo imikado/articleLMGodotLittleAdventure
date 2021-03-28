@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://common/ui/shopList/gem.png" type="Texture" id=1]
 [ext_resource path="res://common/ui/shopList/item.gd" type="Script" id=2]
@@ -22,28 +22,11 @@ corner_radius_bottom_left = 10
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 4 )
 
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.105882, 0.329412, 0.411765, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-expand_margin_left = 2.0
-expand_margin_right = 2.0
-
-[sub_resource type="DynamicFont" id=4]
-size = 6
-use_filter = true
-extra_spacing_top = 2
-extra_spacing_bottom = 2
-extra_spacing_char = 2
-extra_spacing_space = 2
-font_data = ExtResource( 4 )
-
 [node name="shopList" type="CanvasLayer"]
 script = ExtResource( 3 )
 
 [node name="window" type="NinePatchRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -1.5892
@@ -170,19 +153,18 @@ theme = ExtResource( 5 )
 [node name="buyButton" type="Button" parent="window/HBoxContainer/sideInfo"]
 margin_top = 47.0
 margin_right = 180.0
-margin_bottom = 57.0
+margin_bottom = 64.0
 theme = ExtResource( 5 )
 text = "Acheter"
 
 [node name="closeButton" type="Button" parent="window"]
-margin_left = 305.438
-margin_top = 6.0
-margin_right = 313.438
-margin_bottom = 18.0
+margin_left = 271.0
+margin_top = 9.0
+margin_right = 306.0
+margin_bottom = 27.0
+rect_scale = Vector2( 1.23317, 0.957938 )
 theme = ExtResource( 5 )
-custom_styles/normal = SubResource( 3 )
-custom_fonts/font = SubResource( 4 )
-text = "x"
+text = "X"
 __meta__ = {
 "_edit_use_anchors_": false
 }

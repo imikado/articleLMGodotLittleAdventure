@@ -3,12 +3,16 @@ extends KinematicBody2D
 signal startClimbing
 signal endClimbing
 
+signal hit(enemy_)
+signal damagedBy(enemy_)
+
 var speed=100
 
 var left=false
 var right=false
 var up=false
 var down=false
+var buttonPressed=false
 
 var useTouch=false
 
@@ -110,7 +114,12 @@ func pocessInput():
 func processAnimation():
 	var currentAnimation='walk-right'
 	
-	if startClimbing:
+	
+	if buttonPressed && GlobalPlayer.getEquipment()==GlobalItems.ID.SPADE:
+		currentAnimation='digging'
+	elif buttonPressed && GlobalPlayer.getEquipment()==GlobalItems.ID.WOOD_SWORD:
+		currentAnimation='attack1'
+	elif startClimbing:
 		currentAnimation='climbing'
 	elif up :
 		currentAnimation='walk-up'
@@ -130,8 +139,8 @@ func processAnimation():
 
 
 func playAnimation(anim):
-	$AnimatedSprite.play(anim)
-	$AnimatedSprite.play()
+	$AnimatedSprite/AnimationPlayer.play(anim)
+	$AnimatedSprite/AnimationPlayer.play()
 
 
 func resetKeys():
@@ -181,3 +190,35 @@ func _on_gordonhome_playerEndClimbing():
 	if !onScale:
 		startClimbing=false
 		emit_signal("endClimbing")
+
+
+func _on_navigation_releaseButton():
+	buttonPressed=false
+	pass # Replace with function body.
+
+
+func _on_navigation_pushButton():
+	buttonPressed=true
+
+
+
+func _on_hit_body_shape_entered(body_id, body, body_shape, area_shape):
+	if body.is_in_group("Enemy"):
+		emit_signal("hit",body)
+		
+
+
+
+func _on_damage_body_shape_entered(body_id, body, body_shape, area_shape):
+	if body.is_in_group("Enemy"):
+		emit_signal("damagedBy",body)
+		animDamage()
+		
+
+func animDamage():
+	$redModulate.visible=true
+	$timerModulate.start()
+
+
+func _on_timerModulate_timeout():
+	$redModulate.visible=false

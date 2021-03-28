@@ -61,3 +61,16 @@ class TestLittleIntelligence:
 		player.resetPosition()
 		assert_false(player.shouldLoadPosition(),"devrait retourner faux car la position a ete effacée")
 		
+	func test_items():
+		#Arrange
+		var player=Player.new()
+		#Act
+		player.addItem(4)
+		#Assert
+		assert_eq([4],player.getItemsList(),"devrait afficher [4]")
+		assert_eq(true,player.hasItem(4),"devrait afficher true")
+		
+		player.addItemIfNotExist(4)
+		
+		assert_eq([4],player.getItemsList(),"devrait toujours afficher [4]")
+		

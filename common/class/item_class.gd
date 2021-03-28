@@ -2,7 +2,7 @@ extends Resource
 
 class_name item_class 
 
-enum TYPE {WEAPON, MAGICPOTION,MAP,TOOL }
+enum TYPE {WEAPON, MAGICPOTION,MAP,TOOL,THING }
 
 var simpleFieldToSaveList=["name","description","image","type"]
 
@@ -20,11 +20,9 @@ func _init(name_,description_,image_,type_,actionList_=[]):
 	self.actionList=actionList_
 
 func getTexture():
-	var textureTmp=ImageTexture.new()
-		
-	var imageTmp= Image.new()
-	imageTmp.load("res://"+image)
-	textureTmp.create_from_image(imageTmp,0)
+
+	var path="res://"+image
 	
-	return textureTmp
+	return load(path)
+	
 

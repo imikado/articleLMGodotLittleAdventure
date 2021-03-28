@@ -68,16 +68,21 @@ func convertObjectToSave(object_,fieldList_):
 	for field in fieldList_:
 		saveData[field]=object_.get(field)
 	return saveData
-	
+
+
+func gotoMenu():
+	get_tree().change_scene("res://screens/game/menu.tscn")
+
+
 func getDataToSave(scene_):
 	var gameData= {
 		"scene" : scene_,
 		"player":GlobalPlayer.convertToSave(),
+		"scenes":GlobalScenes.convertToSave(),
 	}
 	return gameData
 	
-	
-	
+		
 func loadFile(file_):
 	_filename=file_
 	var saveFilename="user://"+file_
@@ -94,11 +99,10 @@ func loadFile(file_):
 				_sceneToLoad=saveData[field]
 			elif field=="player":
 				GlobalPlayer.loadFromSave(saveData[field])
+			elif field=="scenes":
+				GlobalScenes.loadFromSave(saveData[field])
 		
 	saveFile.close()
-
-func gotoMenu():
-	get_tree().change_scene("res://screens/menu.tscn")
 
 
 	

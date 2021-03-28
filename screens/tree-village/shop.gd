@@ -25,18 +25,17 @@ func _on_door_playerOpenedDoor():
 
 func _on_discussionDoor_playerOpenedDoor():
 	$simpleDialog.start()
-	pass # Replace with function body.
+	getPlayer().disableNavigation()
 
 
 func _on_simpleDialog_discussionFinished():
 	$simpleDialog.end()
 	$shopList.show()
-	pass # Replace with function body.
+	getPlayer().enableNavigation()
 
 
 func _on_discussionArea_playerOpenedDoor():
 	$simpleDialog.start()
-	pass # Replace with function body.
-
+	getPlayer().disableNavigation()
 
 

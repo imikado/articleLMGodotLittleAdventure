@@ -39,8 +39,8 @@ _global_script_class_icons={
 [application]
 
 config/name="LittleAdventure"
-run/main_scene="res://screens/boot.tscn"
-boot_splash/image="res://screens/boot/logodupot.png"
+run/main_scene="res://screens/game/boot.tscn"
+boot_splash/image="res://screens/game/boot/logodupot.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0.933333, 0.372549, 0, 1 )
@@ -51,6 +51,7 @@ config/icon="res://icon.png"
 GlobalPlayer="*res://common/singletons/globalPlayer.gd"
 GlobalGame="*res://common/singletons/globalGame.gd"
 GlobalItems="*res://common/singletons/globalItems.gd"
+GlobalScenes="*res://common/singletons/globalScenes.gd"
 
 [display]
 

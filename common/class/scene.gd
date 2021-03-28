@@ -14,10 +14,10 @@ func getPlayer():
 
 
 func _on_playerAndControl_quit():
+	print( "reel quitter gotoMenu")
 	GlobalGame.gotoMenu()
-	pass # Replace with function body.
-
+	
 
 func _on_playerAndControl_save():
 	GlobalGame.saveWithPosition(filename,getPlayer().getPlayerPosition());
-	pass # Replace with function body.
+	

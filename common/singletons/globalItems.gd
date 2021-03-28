@@ -8,11 +8,20 @@ enum ID {
 	#weapons
 	WOOD_SWORD,
 	#potions 
-	HEALTH_POTION_10
+	HEALTH_POTION_10,
 	#maps
-	GORMON_STAR_MAP
+	GORMON_STAR_MAP,
 	#tools
-	SPADE
+	SPADE,
+	
+	#things
+	GORDMON_STAR,
+	
+	NAILS,
+
+	HONEY,
+
+	BUCKET
 	
 	}
 
@@ -64,6 +73,30 @@ var itemList={
 		"Carte au tresor des etoiles de Gormon",
 		"common/items/maps/gormon-star-map.png",
 		itemClass.TYPE.MAP
+	),
+	ID.GORDMON_STAR:itemClass.new(
+		"Etoile",
+		"Etoile de Gormon",
+		"common/items/things/gordon-star.png",
+		itemClass.TYPE.THING
+	),
+	ID.NAILS:itemClass.new(
+		"Clous",
+		"Clous pour le puit",
+		"common/items/things/nails.png",
+		itemClass.TYPE.THING
+	),
+	ID.HONEY:itemClass.new(
+		"Miel",
+		"Miel pour réparer le puit",
+		"common/items/things/honey.png",
+		itemClass.TYPE.THING
+	),
+	ID.BUCKET:itemClass.new(
+		"Seau",
+		"Seau pour le puit",
+		"common/items/things/bucket.png",
+		itemClass.TYPE.THING
 	)
 }
 

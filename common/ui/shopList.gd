@@ -1,8 +1,10 @@
 extends CanvasLayer
 
 signal buyItem(item_)
+signal closePopup
 
 var shopItemList=[]
+var shopItemSelected
 
 var itemClass=preload("res://common/class/item_class.gd")
 var shopItemClass=preload("res://common/class/shopItem_class.gd")
@@ -52,27 +54,29 @@ func show():
 				print(shopItem)
 
 func _on_pressed_selected(shopItem_):
-	var realItem=GlobalItems.getItem(shopItem_.item)
+	shopItemSelected=shopItem_
+	
+	var realItem=GlobalItems.getItem(shopItemSelected.item)
 	getSideInfo().visible=true
 	getSideInfo().get_node("title").text=realItem.name
 	getSideInfo().get_node("description").text=realItem.description
-	getSideInfo().get_node("HBoxContainer/price").text=str(shopItem_.price)
+	getSideInfo().get_node("HBoxContainer/price").text=str(shopItemSelected.price)
 
 	var buyButton=getBuyButton()
-	buyButton.connect("button_down",self,"_on_pressed_buy",[shopItem_])
+	buyButton.connect("button_down",self,"_on_pressed_buy")
 
-	if GlobalPlayer.canSpendGems(shopItem_.price) && false==GlobalPlayer.hasItem(shopItem_.item):
+	if GlobalPlayer.canSpendGems(shopItemSelected.price) && false==GlobalPlayer.hasItem(shopItemSelected.item):
 		buyButton.disabled=false
 	else:
 		buyButton.disabled=true
 		
-func _on_pressed_buy(shopItem_):
-	GlobalPlayer.spendGems(shopItem_.price)
-	GlobalPlayer.addItem(shopItem_.item)
-	emit_signal("buyItem",shopItem_.item)
+func _on_pressed_buy():
+	GlobalPlayer.spendGems(shopItemSelected.price)
+	GlobalPlayer.addItem(shopItemSelected.item)
+	emit_signal("buyItem",shopItemSelected.item)
 	getWindow().visible=false
 
 
 func _on_closeButton_pressed():
 	getWindow().visible=false
-
+	emit_signal("buyItem",null)

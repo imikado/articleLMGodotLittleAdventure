@@ -15,11 +15,16 @@ func _on_spiderattack_playerOpenedDoor():
 
 
 func _on_crabvillage_playerOpenedDoor():
-	#get_tree().change_scene()
-	pass # Replace with function body.
+	GlobalPlayer.savePosition(Vector2(79,168))
+	get_tree().change_scene("res://screens/crabs-village.tscn")
 
 
 func _on_treevillage2_playerOpenedDoor():
 	GlobalPlayer.savePosition(Vector2(900,258))
 	get_tree().change_scene("res://screens/tree-village.tscn")
 	pass # Replace with function body.
+
+
+func _on_bearvillage2_playerOpenedDoor():
+	GlobalPlayer.savePosition(Vector2(964,427))
+	get_tree().change_scene("res://screens/bear-village.tscn")

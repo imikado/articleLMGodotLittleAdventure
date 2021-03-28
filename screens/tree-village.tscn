@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://screens/tree-village/images/background.png" type="Texture" id=1]
 [ext_resource path="res://screens/tree-village.gd" type="Script" id=2]
@@ -7,9 +7,14 @@
 [ext_resource path="res://screens/tree-village/images/bushes.png" type="Texture" id=5]
 [ext_resource path="res://screens/tree-village/images/paths.png" type="Texture" id=6]
 [ext_resource path="res://common/ui/playerAndControl.tscn" type="PackedScene" id=7]
+[ext_resource path="res://screens/tree-village/assets/ground.tscn" type="PackedScene" id=8]
 [ext_resource path="res://screens/tree-village/assets/tree-house.tscn" type="PackedScene" id=9]
 [ext_resource path="res://screens/tree-village/images/tree.png" type="Texture" id=10]
+[ext_resource path="res://common/ui/notification.tscn" type="PackedScene" id=11]
 [ext_resource path="res://common/areas/door.tscn" type="PackedScene" id=12]
+[ext_resource path="res://screens/tree-village/assets/well.tscn" type="PackedScene" id=13]
+[ext_resource path="res://screens/tree-village/assets/craftsman.tscn" type="PackedScene" id=14]
+[ext_resource path="res://common/ui/simpleDialog.tscn" type="PackedScene" id=15]
 
 [sub_resource type="TileSet" id=1]
 0/name = "background.png 0"
@@ -257,25 +262,25 @@ script = ExtResource( 2 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 96, 96 )
 format = 1
-tile_data = PoolIntArray( -65539, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131069, 0, 0, -131068, 0, 0, -131067, 0, 0, -131066, 0, 0, -131065, 0, 0, -131064, 0, 0, -131063, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65528, 0, 0, -65527, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 196605, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 458749, 0, 0, 458750, 0, 0, 458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 524285, 0, 0, 524286, 0, 0, 524287, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0 )
+tile_data = PoolIntArray( -196601, 0, 0, -196600, 0, 0, -196599, 0, 0, -196598, 0, 0, -196597, 0, 0, -196596, 0, 0, -196595, 0, 0, -196594, 0, 0, -65539, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131069, 0, 0, -131068, 0, 0, -131067, 0, 0, -131066, 0, 0, -131065, 0, 0, -131064, 0, 0, -131063, 0, 0, -131062, 0, 0, -131061, 0, 0, -131060, 0, 0, -131059, 0, 0, -131058, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65528, 0, 0, -65527, 0, 0, -65526, 0, 0, -65525, 0, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, 65549, 0, 0, 65550, 0, 0, 196605, 0, 0, 196606, 0, 0, 196607, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 131086, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196622, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 0, 0, 262157, 0, 0, 262158, 0, 0, 393213, 0, 0, 393214, 0, 0, 393215, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 458749, 0, 0, 458750, 0, 0, 458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 393224, 0, 0, 393225, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 0, 393230, 0, 0, 524285, 0, 0, 524286, 0, 0, 524287, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 458766, 0, 0 )
 
 [node name="decors" type="TileMap" parent="."]
 tile_set = SubResource( 5 )
 cell_size = Vector2( 32, 32 )
 cell_y_sort = true
 format = 1
-tile_data = PoolIntArray( -720876, 2, 0, -720873, 2, 0, -655344, 2, 0, -524296, 2, 0, -589817, 2, 0, -589812, 2, 0, -524260, 2, 0, -393220, 2, 0, -458751, 2, 0, -458747, 2, 0, -458734, 2, 0, -458728, 2, 0, -393206, 2, 0, -262152, 2, 0, -262145, 2, 0, -327665, 2, 0, -327659, 2, 0, -327654, 2, 0, -327652, 2, 0, -196613, 2, 0, -262140, 2, 0, -131063, 0, 0, -8, 2, 0, 65532, 2, 0, 8, 0, 0, 65538, 1, 0, 65551, 1, 0, 65560, 1, 0, 131074, 0, 0, 131076, 0, 0, 131080, 0, 0, 131098, 0, 0, 262136, 2, 0, 262138, 2, 0, 196612, 1, 0, 196618, 0, 0, 196625, 0, 0, 196630, 1, 0, 196633, 1, 0, 196636, 0, 0, 262144, 0, 0, 327680, 0, 0, 327683, 1, 0, 327704, 0, 0, 327708, 0, 0, 393228, 0, 0, 393231, 0, 0, 393234, 0, 0, 393238, 1, 0, 393245, 1, 0, 524280, 2, 0, 524283, 2, 0, 458752, 0, 0, 458753, 1, 0, 458761, 0, 0, 458764, 0, 0, 458773, 0, 0, 458775, 0, 0, 458778, 0, 0, 524288, 0, 0, 524291, 1, 0, 524295, 1, 0, 524299, 1, 0, 524307, 1, 0, 655358, 0, 0, 589847, 0, 0, 589848, 1, 0, 589852, 0, 0, 655360, 0, 0, 655363, 0, 0, 655366, 0, 0, 655371, 0, 0, 655376, 0, 0, 655377, 1, 0, 655379, 0, 0, 655386, 0, 0, 655389, 1, 0, 720904, 0, 0, 720906, 1, 0, 720917, 0, 0, 720918, 1, 0, 786433, 0, 0, 786438, 1, 0, 786444, 0, 0, 786447, 1, 0, 786451, 1, 0, 786456, 0, 0 )
+tile_data = PoolIntArray( -786404, 2, 0, -720876, 2, 0, -720873, 2, 0, -655344, 2, 0, -655330, 2, 0, -655324, 2, 0, -655318, 2, 0, -524296, 2, 0, -589817, 2, 0, -589812, 2, 0, -524260, 2, 0, -524256, 2, 0, -524249, 2, 0, -393220, 2, 0, -458751, 2, 0, -458747, 2, 0, -458734, 2, 0, -458728, 2, 0, -393206, 2, 0, -393181, 2, 0, -262152, 2, 0, -262145, 2, 0, -327665, 2, 0, -327659, 2, 0, -327654, 2, 0, -327639, 2, 0, -196613, 2, 0, -262140, 2, 0, -262112, 2, 0, -262107, 2, 0, -131063, 0, 0, -8, 2, 0, 65532, 2, 0, 8, 0, 0, 31, 1, 0, 65538, 1, 0, 65551, 1, 0, 65560, 1, 0, 131074, 0, 0, 131076, 0, 0, 131080, 0, 0, 131098, 0, 0, 131109, 0, 0, 262136, 2, 0, 262138, 2, 0, 196612, 1, 0, 196618, 0, 0, 196625, 0, 0, 196630, 1, 0, 196633, 1, 0, 196636, 0, 0, 196649, 1, 0, 262144, 0, 0, 262159, 1, 0, 262179, 0, 0, 262183, 1, 0, 327680, 0, 0, 327683, 1, 0, 327701, 1, 0, 327704, 0, 0, 327708, 0, 0, 393228, 0, 0, 393231, 0, 0, 393234, 0, 0, 393246, 1, 0, 524280, 2, 0, 524283, 2, 0, 458752, 0, 0, 458753, 1, 0, 458761, 0, 0, 458764, 0, 0, 458773, 0, 0, 458775, 0, 0, 458778, 0, 0, 524288, 0, 0, 524291, 1, 0, 524295, 1, 0, 524299, 1, 0, 524307, 1, 0, 655358, 0, 0, 589847, 0, 0, 589848, 1, 0, 589852, 0, 0, 589858, 1, 0, 655360, 0, 0, 655363, 0, 0, 655366, 0, 0, 655371, 0, 0, 655376, 0, 0, 655377, 1, 0, 655379, 0, 0, 655386, 0, 0, 655389, 1, 0, 655392, 0, 0, 655399, 0, 0, 720904, 0, 0, 720906, 1, 0, 720917, 0, 0, 720918, 1, 0, 720936, 1, 0, 786433, 0, 0, 786438, 1, 0, 786444, 0, 0, 786447, 1, 0, 786451, 1, 0, 786456, 0, 0 )
 
 [node name="road" type="TileMap" parent="."]
 tile_set = SubResource( 6 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 131092, 3, 0, 196628, 3, 0, 262164, 3, 0, 327693, 3, 0, 327700, 3, 0, 393220, 0, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 7, 0, 393229, 3, 0, 393236, 3, 0, 458756, 3, 0, 458765, 3, 0, 458772, 3, 0, 524292, 3, 0, 524301, 3, 0, 524308, 4, 0, 524309, 1, 0, 524310, 1, 0, 524311, 1, 0, 524312, 1, 0, 524313, 1, 0, 524314, 1, 0, 524315, 1, 0, 524316, 1, 0, 524317, 1, 0, 589828, 5, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 6, 0, 589844, 3, 0, 655373, 3, 0, 655380, 3, 0, 720909, 5, 0, 720910, 1, 0, 720911, 1, 0, 720912, 1, 0, 720913, 1, 0, 720914, 1, 0, 720915, 1, 0, 720916, 7, 0 )
+tile_data = PoolIntArray( 131092, 3, 0, 196628, 3, 0, 262164, 3, 0, 327693, 3, 0, 327700, 3, 0, 393220, 0, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 7, 0, 393229, 3, 0, 393236, 3, 0, 458756, 3, 0, 458765, 3, 0, 458772, 3, 0, 524292, 3, 0, 524301, 3, 0, 524308, 4, 0, 524309, 1, 0, 524310, 1, 0, 524311, 1, 0, 524312, 1, 0, 524313, 1, 0, 524314, 1, 0, 524315, 1, 0, 524316, 1, 0, 524317, 1, 0, 524318, 1, 0, 524319, 1, 0, 524320, 1, 0, 524321, 1, 0, 524322, 1, 0, 524323, 1, 0, 524324, 1, 0, 524325, 1, 0, 524326, 1, 0, 524327, 1, 0, 524328, 1, 0, 524329, 1, 0, 524330, 1, 0, 524331, 1, 0, 524332, 1, 0, 589828, 5, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 6, 0, 589844, 3, 0, 655373, 3, 0, 655380, 3, 0, 720909, 5, 0, 720910, 1, 0, 720911, 1, 0, 720912, 1, 0, 720913, 1, 0, 720914, 1, 0, 720915, 1, 0, 720916, 7, 0 )
 
 [node name="cameraRef" type="ReferenceRect" parent="."]
 margin_left = -40.0
 margin_top = -10.0
-margin_right = 960.0
+margin_right = 1443.0
 margin_bottom = 475.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -289,29 +294,79 @@ position = Vector2( 257.707, 138.5 )
 [node name="gordon-home" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( 433.238, 142.525 )
 
+[node name="well" parent="YSort" instance=ExtResource( 13 )]
+position = Vector2( 934.236, 59.7037 )
+
 [node name="gem-house" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 655.238, 50.525 )
 
 [node name="playerAndControl" parent="YSort" instance=ExtResource( 7 )]
-position = Vector2( 195.088, 258.996 )
+position = Vector2( 827.242, 217.984 )
+
+[node name="craftsman" parent="YSort" instance=ExtResource( 14 )]
+visible = false
+position = Vector2( 1068.34, 162.382 )
 
 [node name="tree bottom" type="TileMap" parent="."]
 tile_set = SubResource( 9 )
 cell_y_sort = true
 format = 1
-tile_data = PoolIntArray( 393212, 0, 0, 393214, 0, 0, 327681, 0, 0, 327684, 0, 0, 327691, 0, 0, 458751, 0, 0, 393219, 0, 0, 393222, 0, 0, 393224, 0, 0, 393226, 0, 0, 393229, 0, 0, 524283, 0, 0, 524285, 0, 0, 458753, 0, 0, 458757, 0, 0, 458763, 0, 0, 589823, 0, 0, 524291, 0, 0, 524295, 0, 0, 524297, 0, 0, 524301, 0, 0, 589835, 0, 0 )
+tile_data = PoolIntArray( 393212, 0, 0, 393214, 0, 0, 327681, 0, 0, 327684, 0, 0, 327691, 0, 0, 327695, 0, 0, 327698, 0, 0, 327701, 0, 0, 458751, 0, 0, 393219, 0, 0, 393222, 0, 0, 393224, 0, 0, 393226, 0, 0, 393229, 0, 0, 393233, 0, 0, 393235, 0, 0, 524283, 0, 0, 524285, 0, 0, 458753, 0, 0, 458757, 0, 0, 458763, 0, 0, 458767, 0, 0, 458773, 0, 0, 589823, 0, 0, 524291, 0, 0, 524295, 0, 0, 524297, 0, 0, 524301, 0, 0, 524304, 0, 0, 524306, 0, 0, 589835, 0, 0 )
 
 [node name="goOutFromTreeVillage" parent="." instance=ExtResource( 12 )]
-position = Vector2( 947.329, 248.635 )
+position = Vector2( 1416.55, 225.931 )
 scale = Vector2( 1.92, 16.7473 )
+
+[node name="notification" parent="." instance=ExtResource( 11 )]
+margin_left = 9.94586
+margin_top = 24.2502
+margin_right = 9.94586
+margin_bottom = 24.2502
+
+[node name="ground" parent="." instance=ExtResource( 8 )]
+position = Vector2( 267.179, 271.815 )
+
+[node name="ground2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 522.926, 144.363 )
+
+[node name="ground3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 713.97, 177.322 )
+
+[node name="ground4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1003.04, 204.632 )
+
+[node name="ground5" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1140.2, 311.479 )
+
+[node name="simpleDialog" parent="." instance=ExtResource( 15 )]
 [connection signal="playerEntered" from="YSort/shop" to="." method="_on_shop_playerEntered"]
 [connection signal="playerEntered" from="YSort/gordon-home" to="." method="_on_gordonhome_playerEntered"]
 [connection signal="playerLeaveScale" from="YSort/gordon-home" to="YSort/playerAndControl" method="_on_gordonhome_playerLeaveScale"]
 [connection signal="playerOnScale" from="YSort/gordon-home" to="YSort/playerAndControl" method="_on_gordonhome_playerOnScale"]
 [connection signal="playerStartClimbing" from="YSort/gordon-home" to="YSort/playerAndControl" method="_on_gordonhome_playerStartClimbing"]
+[connection signal="talk" from="YSort/well" to="." method="_on_well_talk"]
 [connection signal="playerEntered" from="YSort/gem-house" to="." method="_on_gemhouse_playerEntered"]
+[connection signal="digging" from="YSort/playerAndControl" to="." method="_on_playerAndControl_digging"]
 [connection signal="endClimbing" from="YSort/playerAndControl" to="." method="_on_playerAndControl_endClimbing"]
+[connection signal="endDigging" from="YSort/playerAndControl" to="." method="_on_playerAndControl_endDigging"]
 [connection signal="quit" from="YSort/playerAndControl" to="." method="_on_playerAndControl_quit"]
 [connection signal="save" from="YSort/playerAndControl" to="." method="_on_playerAndControl_save"]
 [connection signal="startClimbing" from="YSort/playerAndControl" to="." method="_on_playerAndControl_startClimbing"]
+[connection signal="talk" from="YSort/craftsman" to="." method="_on_craftsman_talk"]
 [connection signal="playerOpenedDoor" from="goOutFromTreeVillage" to="." method="_on_goOutFromTreeVillage_playerOpenedDoor"]
+[connection signal="isDiscovered" from="ground" to="." method="_on_ground_isDiscovered"]
+[connection signal="rightGroundFounded" from="ground" to="." method="_on_ground_rightGroundFounded"]
+[connection signal="rightGroundFoundedLeft" from="ground" to="." method="_on_ground_rightGroundFoundedLeft"]
+[connection signal="isDiscovered" from="ground2" to="." method="_on_ground2_isDiscovered"]
+[connection signal="rightGroundFounded" from="ground2" to="." method="_on_ground2_rightGroundFounded"]
+[connection signal="rightGroundFoundedLeft" from="ground2" to="." method="_on_ground2_rightGroundFoundedLeft"]
+[connection signal="isDiscovered" from="ground3" to="." method="_on_ground3_isDiscovered"]
+[connection signal="rightGroundFounded" from="ground3" to="." method="_on_ground3_rightGroundFounded"]
+[connection signal="rightGroundFoundedLeft" from="ground3" to="." method="_on_ground3_rightGroundFoundedLeft"]
+[connection signal="isDiscovered" from="ground4" to="." method="_on_ground4_isDiscovered"]
+[connection signal="rightGroundFounded" from="ground4" to="." method="_on_ground4_rightGroundFounded"]
+[connection signal="rightGroundFoundedLeft" from="ground4" to="." method="_on_ground4_rightGroundFoundedLeft"]
+[connection signal="isDiscovered" from="ground5" to="." method="_on_ground5_isDiscovered"]
+[connection signal="rightGroundFounded" from="ground5" to="." method="_on_ground5_rightGroundFounded"]
+[connection signal="rightGroundFoundedLeft" from="ground5" to="." method="_on_ground5_rightGroundFoundedLeft"]
+[connection signal="discussionFinished" from="simpleDialog" to="." method="_on_simpleDialog_discussionFinished"]

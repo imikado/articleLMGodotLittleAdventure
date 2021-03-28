@@ -1,17 +1,24 @@
 extends CanvasLayer
 
-signal buyItem(item_)
+signal equipItem(item_)
 
 var itemList=[]
 
 var itemClass=preload("res://common/class/item_class.gd")
-
+var exampleItem
 
 var patternItem=null
+
+var itemSelected=null
 
 func _ready():
 	getWindow().visible=false
 	getSideInfo().visible=false
+	$window2.visible=false
+	
+	var exampleItemTmp=getGrid().get_node("item")
+	exampleItem=exampleItemTmp.duplicate()
+	exampleItemTmp.queue_free()
 
 #access
 func getWindow():
@@ -38,18 +45,20 @@ func hide():
 	
 func show():
 	getWindow().visible=true
-	if patternItem==null:
-		var exampleItem=getGrid().get_node("item")
-		patternItem=exampleItem.duplicate()
-		exampleItem.queue_free()
 	
-		for item in itemList:
-			var realItem=GlobalItems.getItem(item)
-			var newItem=patternItem.duplicate()
-			newItem.setImage(realItem.getTexture())
-			newItem.connect("button_down",self,"_on_pressed_selected",[item])
-		
-			getGrid().add_child(newItem)
+	for itemToReset in getGrid().get_children():
+		itemToReset.queue_free()
+	
+	patternItem=exampleItem.duplicate()
+
+	for item in itemList:
+		var realItem=GlobalItems.getItem(item)
+		var newItem=patternItem.duplicate()
+		newItem.setImage(realItem.getTexture())
+		newItem.connect("button_down",self,"_on_pressed_selected",[item])
+	
+		getGrid().add_child(newItem)
+ 
 
 func _on_pressed_selected(item_):
 	var realItem=GlobalItems.getItem(item_)
@@ -57,15 +66,16 @@ func _on_pressed_selected(item_):
 	getSideInfo().get_node("title").text=realItem.name
 	getSideInfo().get_node("description").text=realItem.description
 
+	itemSelected=item_
 
 	var equipButton=getEquipButton()
-	equipButton.connect("button_down",self,"_on_pressed_equip",[item_])
+	equipButton.connect("button_down",self,"_on_pressed_equip")
 
 	var displayButton=getDisplayButton()
-	displayButton.connect("button_down",self,"_on_pressed_display",[item_])
+	displayButton.connect("button_down",self,"_on_pressed_display")
 
 
-	if realItem.type==itemClass.TYPE.TOOL:
+	if realItem.type==itemClass.TYPE.TOOL or realItem.type==itemClass.TYPE.WEAPON:
 		equipButton.visible=true
 	else:
 		equipButton.visible=false
@@ -76,13 +86,22 @@ func _on_pressed_selected(item_):
 		displayButton.visible=false
 	
 		
-func _on_pressed_equip(item_):
-	GlobalPlayer.setEquipment(item_)
+func _on_pressed_equip():
+	GlobalPlayer.setEquipment(itemSelected)
+	emit_signal("equipItem",itemSelected)
+	getWindow().visible=false
 
-func _on_pressed_display(item_):
+func _on_pressed_display():
 	#display map zoomed
+	$window2.visible=true
+	$window2/TextureRect.texture=load("res://common/items/maps/gormonstar-map-zoom.png")
 	pass
 
 func _on_closeButton_pressed():
 	getWindow().visible=false
 
+
+
+func _on_closeButton2_pressed():
+	$window2.visible=false
+	pass # Replace with function body.

@@ -6,6 +6,9 @@ var damageSpider=10
 var itemClass=preload("res://common/class/item_class.gd")
 var attackClass=preload("res://common/class/item/attack_class.gd")
 
+var positionToGoUp
+var positionToGoDown
+
 func test():
 	GlobalPlayer.addItem(itemClass.new(
 			"Epée en bois",
@@ -41,6 +44,10 @@ func test():
 func _ready():
 	$lifePlayer.init(GlobalPlayer.getLife(),GlobalPlayer.getMaxLife())
 	$lifeSpider.init(lifeSpider,lifeSpider)
+	
+	positionToGoUp=Vector2( GlobalPlayer.getPosition().x,260)  
+	positionToGoDown=Vector2( GlobalPlayer.getPosition().x,420)
+	
  
 
 func _on_gamepad_attack(attack_):
@@ -71,6 +78,10 @@ func _on_player_damageFinished():
 
 func _on_spider1_dieFinished():
 	GlobalPlayer.addXp(1)
+	if(GlobalPlayer.getPosition().y<300):
+		GlobalPlayer.savePosition(positionToGoDown )
+	else:
+		GlobalPlayer.savePosition(positionToGoUp )
 	get_tree().change_scene("res://screens/macro-map.tscn")
 
 
@@ -80,9 +91,9 @@ func _on_player_dieFinished():
 
 func _on_gamepad_leave():
 	if(GlobalPlayer.getPosition().y<300):
-		GlobalPlayer.savePosition(GlobalPlayer.getPosition()+Vector2(0,-50) )
+		GlobalPlayer.savePosition(positionToGoUp )
 	else:
-		GlobalPlayer.savePosition(GlobalPlayer.getPosition()+Vector2(0,+50) )
+		GlobalPlayer.savePosition(positionToGoDown )
 		
 	get_tree().change_scene("res://screens/macro-map.tscn")
 	pass # Replace with function body.

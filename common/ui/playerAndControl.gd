@@ -7,6 +7,12 @@ signal quit
 signal startClimbing
 signal endClimbing
 
+signal digging
+signal endDigging
+
+signal hit(enemy_)
+signal damagedBy(enemy_)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -14,8 +20,23 @@ func _ready():
 func getPlayerPosition():
 	return $player.global_position
 
+func enableNavigation():
+	$navigation.enable()
+
+func disableNavigation():
+	$navigation.disable()
+
 func reloadGems():
 	$HUD.reloadGems()
+	
+func reloadInvetory():
+	$HUD.reloadInventory()
+	
+func reloadLife():
+	$HUD.reloadLife()
+	
+func reloadXp():
+	$HUD.reloadXp()
 
 func zoomDown():
 	$player.zoomDown()
@@ -30,7 +51,7 @@ func loadCameraLimits(cameraRef_):
 func _on_shopList_buyItem(item_):
 	$HUD.reloadGems()
 	$HUD.reloadInventory()
-	pass # Replace with function body.
+	enableNavigation()
 
 
 func _on_HUD_save():
@@ -66,3 +87,24 @@ func _on_gordonhome_playerOnScale():
 func _on_gordonhome_playerStartClimbing():
 	$player._on_gordonhome_playerStartClimbing()
 	pass # Replace with function body.
+
+
+
+
+func _on_navigation_releaseButton():
+	if GlobalPlayer.getEquipment()==GlobalItems.ID.SPADE:
+		emit_signal("endDigging")
+	
+func _on_navigation_pushButton():
+	if GlobalPlayer.getEquipment()==GlobalItems.ID.SPADE:
+		emit_signal("digging")
+	
+
+
+func _on_player_hit(enemy_):
+	emit_signal("hit",enemy_)
+
+
+
+func _on_player_damagedBy(enemy_):
+	emit_signal("damagedBy",enemy_)
