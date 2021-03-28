@@ -142,6 +142,11 @@ func playAnimation(anim):
 	$AnimatedSprite/AnimationPlayer.play(anim)
 	$AnimatedSprite/AnimationPlayer.play()
 
+func stop():
+	left=false
+	right=false
+	up=false
+	down=false
 
 func resetKeys():
 	if useTouch:

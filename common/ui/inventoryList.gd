@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal equipItem(item_)
+signal useItem(item)
 
 var itemList=[]
 
@@ -35,7 +36,11 @@ func getEquipButton():
 	
 func getDisplayButton():
 	return getSideInfo().get_node("displayButton")
-	
+
+func getUseButton():
+	return getSideInfo().get_node("useButton")
+
+
 func setItemList(itemList_):
 	itemList=itemList_
 	pass
@@ -74,6 +79,8 @@ func _on_pressed_selected(item_):
 	var displayButton=getDisplayButton()
 	displayButton.connect("button_down",self,"_on_pressed_display")
 
+	var useButton=getUseButton()
+	useButton.connect("button_down",self,"_on_pressed_use")
 
 	if realItem.type==itemClass.TYPE.TOOL or realItem.type==itemClass.TYPE.WEAPON:
 		equipButton.visible=true
@@ -85,6 +92,12 @@ func _on_pressed_selected(item_):
 	else:
 		displayButton.visible=false
 	
+	if realItem.type==itemClass.TYPE.MAGICPOTION:
+		useButton.visible=true
+	else:
+		useButton.visible=false
+	
+
 		
 func _on_pressed_equip():
 	GlobalPlayer.setEquipment(itemSelected)
@@ -95,7 +108,12 @@ func _on_pressed_display():
 	#display map zoomed
 	$window2.visible=true
 	$window2/TextureRect.texture=load("res://common/items/maps/gormonstar-map-zoom.png")
-	pass
+
+func _on_pressed_use():
+	GlobalPlayer.useItem(itemSelected)
+	emit_signal("useItem",itemSelected)
+	getWindow().visible=false
+
 
 func _on_closeButton_pressed():
 	getWindow().visible=false

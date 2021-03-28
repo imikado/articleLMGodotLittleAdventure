@@ -26,6 +26,8 @@ func enableNavigation():
 func disableNavigation():
 	$navigation.disable()
 
+	$player.stop()
+
 func reloadGems():
 	$HUD.reloadGems()
 	
@@ -108,3 +110,8 @@ func _on_player_hit(enemy_):
 
 func _on_player_damagedBy(enemy_):
 	emit_signal("damagedBy",enemy_)
+
+
+func _on_HUD_useItem(item_):
+	$HUD.reloadInventory()
+	pass # Replace with function body.

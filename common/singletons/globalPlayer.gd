@@ -99,16 +99,34 @@ func canSpendGems(price_):
 	return false
 
 #--items
+func useItem(itemId_):
+	var realItem=GlobalItems.getItem(itemId_)
+	if realItem.type==item_class.TYPE.MAGICPOTION:
+		var potionAction=realItem.actionList[0]
+		if potionAction.action=="increaseLife":
+			var newLife=getLife()+potionAction.value
+			if newLife > getMaxLife():
+				newLife=getMaxLife()
+			setLife( newLife )
+			removeItem(itemId_)
+
+
 func hasItem(itemId_):
 	return itemsList.has(itemId_)
+
+func addItem(itemId_):
+	addItemIfNotExist(itemId_)
 	
 func addItemIfNotExist(itemId_):
 	if !hasItem(itemId_):
-		addItem(itemId_)
+		_addItem(itemId_)
 		
-func addItem(itemId_):
+func addItemEvenIfExist(itemId_):
 	itemsList.append(itemId_)
 	
+func _addItem(itemId_):
+	itemsList.append(itemId_)
+
 func getItemsList():
 	return itemsList
 

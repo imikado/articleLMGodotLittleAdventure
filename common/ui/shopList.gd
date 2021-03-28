@@ -72,7 +72,7 @@ func _on_pressed_selected(shopItem_):
 		
 func _on_pressed_buy():
 	GlobalPlayer.spendGems(shopItemSelected.price)
-	GlobalPlayer.addItem(shopItemSelected.item)
+	GlobalPlayer.addItemEvenIfExist(shopItemSelected.item)
 	emit_signal("buyItem",shopItemSelected.item)
 	getWindow().visible=false
 

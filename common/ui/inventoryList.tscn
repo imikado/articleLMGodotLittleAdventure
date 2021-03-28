@@ -148,6 +148,13 @@ margin_bottom = 69.0
 theme = ExtResource( 5 )
 text = "Afficher"
 
+[node name="useButton" type="Button" parent="window/HBoxContainer/sideInfo"]
+margin_top = 73.0
+margin_right = 180.0
+margin_bottom = 90.0
+theme = ExtResource( 5 )
+text = "Utiliser"
+
 [node name="closeButton" type="Button" parent="window"]
 margin_left = 238.0
 margin_top = 8.0

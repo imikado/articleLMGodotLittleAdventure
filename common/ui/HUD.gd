@@ -4,6 +4,7 @@ signal save
 signal quit
 
 signal equipItem(item_)
+signal useItem(item_)
 
 const MENU_SAVE=0
 const MENU_INVENTORY=1
@@ -83,7 +84,6 @@ func _on_btnNo_button_down():
 
 func _on_inventoryList_equipItem(item_):
 	emit_signal("equipItem",item_)
-	pass # Replace with function body.
 
 
 func _on_btnCancell_button_down():
@@ -94,3 +94,8 @@ func _on_btnCancell_button_down():
 func _on_savedTimer_timeout():
 	$saved.visible=false
 	pass # Replace with function body.
+
+
+func _on_inventoryList_useItem(item_):
+	emit_signal("useItem",item_)
+	reloadLife()
