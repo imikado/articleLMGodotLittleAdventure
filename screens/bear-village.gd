@@ -1,12 +1,16 @@
 extends "res://common/class/scene.gd"
 
+func debug():
+	GlobalPlayer.addItem(GlobalItems.ID.WOOD_SWORD)
+
+
 
 func _ready():
 	setPlayerPath("YSort/playerAndControl")
 	loadPosition()
 	getPlayer().loadCameraLimits($cameraRef)
 
-
+	#debug()
 
 
 func _on_bevilroom_playerEntered():

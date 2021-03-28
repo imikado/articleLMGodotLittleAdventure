@@ -1,12 +1,16 @@
 extends Node2D
 
 var honeyReceived=0
+var dialogStillDisplayed=false
 
 func getPlayer():
 	return $"bear-platform"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	dialogStillDisplayed=GlobalScenes.getParamForSceneOr(filename,'dialogStillDisplayed',false)
+	
 	$gameOver.visible=false
 	getPlayer().loadCameraLimits($cameraRef)
 	getPlayer().enableCamera()
@@ -16,9 +20,12 @@ func _ready():
 		"Peux-tu m'aider à récuperer mon miel  ?",
 		"Il te faudra aller à la ruche et me ramener mes 3 sceaux"
 	])
-	$startDialog.start()
-	
-	disableNavigation()
+	if !dialogStillDisplayed:
+		$startDialog.start()
+		
+		disableNavigation()
+	else:
+		enableNavigation()
 	
 	$winDialog.addDiscussion("Apiculteur",
 	[
@@ -75,6 +82,8 @@ func _on_bearAsking_playerOpenedDoor():
 func _on_startDialog_discussionFinished():
 	$startDialog.end()
 	enableNavigation()
+	GlobalScenes.saveParamForScene(filename,"dialogStillDisplayed",true)
+
 
 
 func _on_winDialog_discussionFinished():

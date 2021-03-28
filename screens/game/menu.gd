@@ -35,6 +35,8 @@ func _on_btnLoad_button_down():
 
 func showNewGame():
 	$newGameBox.visible=true
+	$CanvasLayer/keyboard.visible=true
+	$CanvasLayer/keyboard.reset()
 
 func hideNewGame():
 	$newGameBox.visible=false	
@@ -49,3 +51,13 @@ func hideLoadGame():
 func _on_btnCreate_button_down():
 	GlobalGame.create($newGameBox/nicknameLabel.text)
 	get_tree().change_scene(GlobalGame.getSceneToLoad())
+
+
+func _on_keyboard_fillField(text_):
+	$CanvasLayer/keyboard.visible=false
+	$newGameBox/nicknameLabel.text=text_
+	pass # Replace with function body.
+
+
+func _on_keyboard_close():
+	$CanvasLayer/keyboard.visible=false

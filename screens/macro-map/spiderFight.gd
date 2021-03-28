@@ -9,7 +9,7 @@ var attackClass=preload("res://common/class/item/attack_class.gd")
 var positionToGoUp
 var positionToGoDown
 
-func test():
+func debug():
 	GlobalPlayer.addItem(itemClass.new(
 			"Epée en bois",
 			"Une simple épée en bois de hêtre",
@@ -42,6 +42,8 @@ func test():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#debug()
+
 	$lifePlayer.init(GlobalPlayer.getLife(),GlobalPlayer.getMaxLife())
 	$lifeSpider.init(lifeSpider,lifeSpider)
 	

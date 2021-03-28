@@ -2,6 +2,8 @@ extends Node2D
 
 
 signal talk
+signal repaired
+
 
 enum {BROKEN,IS_REPAIRING,REPAIRED}
 var state=BROKEN
@@ -50,3 +52,10 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if state==IS_REPAIRING:
 		setState(REPAIRED)
 		$craftsman.idle()
+				
+		$Timer.start()
+
+
+func _on_Timer_timeout():
+	emit_signal("repaired")
+	pass # Replace with function body.

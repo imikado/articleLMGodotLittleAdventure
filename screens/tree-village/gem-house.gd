@@ -22,9 +22,7 @@ func _ready():
 		$simpleDialog.addDiscussion("Gordon",["Oui,ça m'interesse mais comment les trouver ?"])
 		$simpleDialog.addDiscussion("Vendeur",["Je vais te donner une carte et une pelle"])
 		$simpleDialog.addDiscussion("Gordon",["Merci pour la pelle et la carte."])
-	
-		giveToPlayerSpadeAndMap()
-		
+			
 		GlobalScenes.saveParamForScene(filename,"step",STEP_SHOULD_FIND_GORMONSTAR)
 
 	elif step==STEP_SHOULD_FIND_GORMONSTAR:
@@ -71,8 +69,8 @@ func _on_discussionDoor_playerOpenedDoor():
 	pass # Replace with function body.
 
 func giveToPlayerSpadeAndMap():
-	GlobalPlayer.addItemIfNotExist(GlobalItems.ID.SPADE)
-	GlobalPlayer.addItemIfNotExist(GlobalItems.ID.GORMON_STAR_MAP)
+	GlobalPlayer.addItem(GlobalItems.ID.SPADE)
+	GlobalPlayer.addItem(GlobalItems.ID.GORMON_STAR_MAP)
 
 func _on_simpleDialog_discussionFinished():
 	$simpleDialog.end()

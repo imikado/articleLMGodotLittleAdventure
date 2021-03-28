@@ -1,12 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://common/themes/default.theme" type="Theme" id=1]
 [ext_resource path="res://screens/game/menu.gd" type="Script" id=2]
 [ext_resource path="res://screens/game/title/adventure.tscn" type="PackedScene" id=3]
 [ext_resource path="res://screens/game/title/little.tscn" type="PackedScene" id=4]
 [ext_resource path="res://screens/tree-village/images/background.png" type="Texture" id=5]
-
-
+[ext_resource path="res://screens/game/keyboardGame.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Theme" id=1]
 LineEdit/colors/clear_button_color = Color( 0.88, 0.88, 0.88, 1 )
@@ -121,6 +120,13 @@ margin_right = 105.903
 margin_bottom = 49.7048
 rect_scale = Vector2( 0.37695, 0.184603 )
 theme = SubResource( 1 )
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="btnCreate" type="Button" parent="newGameBox"]
 margin_left = 6.54415
@@ -154,6 +160,15 @@ text = "Partie(s)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="keyboard" parent="CanvasLayer" instance=ExtResource( 6 )]
+visible = false
+margin_left = 0.559881
+margin_right = 0.559875
 [connection signal="button_down" from="VBoxContainer/btnNew" to="." method="_on_btnNew_button_down"]
 [connection signal="button_down" from="VBoxContainer/btnLoad" to="." method="_on_btnLoad_button_down"]
 [connection signal="button_down" from="newGameBox/btnCreate" to="." method="_on_btnCreate_button_down"]
+[connection signal="close" from="CanvasLayer/keyboard" to="." method="_on_keyboard_close"]
+[connection signal="fillField" from="CanvasLayer/keyboard" to="." method="_on_keyboard_fillField"]

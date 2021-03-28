@@ -9,8 +9,6 @@
 [ext_resource path="res://screens/game/title.gd" type="Script" id=7]
 [ext_resource path="res://screens/game/title/little.tscn" type="PackedScene" id=8]
 
-
-
 [sub_resource type="TileSet" id=1]
 0/name = "background.png 0"
 0/texture = ExtResource( 4 )

@@ -11,6 +11,11 @@ func debug():
 	#$YSort/well.repair()
 	#$YSort/craftsman.visible=false
 
+	GlobalPlayer.setLife(80)
+	getPlayer().reloadLife()
+
+	GlobalPlayer.addItem(GlobalItems.ID.HEALTH_POTION_10)
+
 func _ready():
 	setPlayerPath("YSort/playerAndControl")
 	loadPosition()
@@ -18,7 +23,6 @@ func _ready():
 
 	#debug()
 
-	
 	if true==GlobalScenes.getParamForSceneOr(filename,'ground.isDiscovered',false):
 		$ground.enableDiscovered()
 	
@@ -128,7 +132,7 @@ func _on_playerAndControl_endDigging():
 #--- grounds
 func processGormonStarFounded(grounded_):
 	$notification.display("Une étoile de Gormon trouvée !!")
-	GlobalPlayer.addItem(GlobalItems.ID.GORDMON_STAR)
+	GlobalPlayer.addItemEvenIfExist(GlobalItems.ID.GORDMON_STAR)
 	$YSort/playerAndControl.reloadInvetory()
 	
 	GlobalScenes.saveParamForScene(filename,grounded_+".isDiscovered",true)
@@ -206,3 +210,13 @@ func _on_simpleDialog_discussionFinished():
 func _on_well_talk():
 	$simpleDialog.start()
 	getPlayer().disableNavigation()
+
+
+func _on_well_repaired():
+	$endgame.visible=true
+	#get_tree().change_scene("res://screens/game/endgame.tscn")
+	pass # Replace with function body.
+
+
+func _on_gotBackToMenu_button_down():
+	get_tree().change_scene("res://screens/game/menu.tscn")

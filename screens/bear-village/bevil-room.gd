@@ -5,9 +5,13 @@ var nbBeeKilled=0
 var maxNbBeeToKill=0
 
 
-func _ready():
-	#debug
+func debug():
 	GlobalPlayer.addItem(GlobalItems.ID.WOOD_SWORD)
+
+
+
+func _ready():
+	#debug()
 
 	setPlayerPath("playerAndControl")
 	loadPosition()
@@ -52,7 +56,7 @@ func _on_playerAndControl_hit(enemy_):
 	nbBeeKilled+=1
 	$playerAndControl.reloadXp()
 	
-	if nbBeeKilled==2:#maxNbBeeToKill:
+	if nbBeeKilled==maxNbBeeToKill:
 		win()
 	
 
